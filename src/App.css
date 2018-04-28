@@ -1,28 +1,33 @@
-.App {
+body{
+  background: firebrick;
+  padding-top: 150px; 
+}
+table{
+  border-collapse: collapse;
+}
+tr{
+  background:#eee;
+}
+td{
+  padding: 10px;
+  width: 100%;
+  background: transparent;
+  transition: all 1s ease;
+  cursor: pointer;
+  margin: 0;
+}
+tr:nth-child(2n+0){
+  background: #e4e4e4;
+}
+.button-inline{
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+tr:hover{
+  background: #d8d8d8;
+}
+h1{
+  color:#eee;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

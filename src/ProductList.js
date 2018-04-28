@@ -1,22 +1,71 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
+const Button = ({ onClick, className='', children }) => {
+  return (
+    <button
+    onClick={onClick}
+    type="button"
+    className={className}>
+      {children}
+    </button>
+  )
+}
 
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to KindGeek React School</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+const Product = ({ item, onDismiss}) => {
+  return (
+    <tr>
+      <td>
+        {item}       
+      </td>
+      <td>
+        <Button
+          onClick={() => onDismiss(item)}
+          className='button-inline'>
+          Dismiss
+        </Button>
+      </td>
+    </tr>    
+  )
+}
+
+const list = ['Apple', 'Peanuts', 'Orange', 'Potate', 'Cheese'];
+
+class ProductList extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      list
+    }
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss(item){
+    const updateList = this.state.list.filter(itemList => itemList !== item);
+    this.setState({ list: updateList });
+  }
+  
+  render() {
+    const { list } = this.state;
+    return (
+      <div>
+        <h1>Product List</h1>
+        <table>
+          <tbody>
+            {list.map((item,id) => 
+              <Product
+                key={id}
+                item={item}
+                onDismiss={this.onDismiss}
+              >
+              </Product>
+            )}
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
-export default App;
+
+export default ProductList;

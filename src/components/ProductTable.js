@@ -9,16 +9,20 @@ class ProductTable extends Component {
     super(props);
 
     this.state = {
-      products: this.props.products
+      deletedProducts: [],
+      products: this.props.products,
     }
 
     this.handleRowDel = this.handleRowDel.bind(this);
+    this.handleReturnRow = this.handleReturnRow.bind(this);
   }
 
   handleRowDel(position){
     const { products } = this.state;
+    const { deletedProducts } = this.state;
 
     this.setState({
+      deletedProducts: [...deletedProducts, [...products]],
       products: products.filter((product, index) => index !== (position - 1) ),
     });
   }
@@ -35,8 +39,17 @@ class ProductTable extends Component {
     });
   }
 
+  handleReturnRow() {
+    const { deletedProducts } = this.state;
+
+    this.setState({
+      products: deletedProducts.pop(),
+    });
+  }
+
   render() {
     const { products } = this.state;
+    const { deletedProducts } = this.state;
 
     return(
       <Table striped bordered condensed hover>
@@ -71,7 +84,17 @@ class ProductTable extends Component {
                 Sort A-Z
               </Button>
             </td>
-            <td></td>
+            <td>
+              {deletedProducts.length > 0
+                ? <Button
+                    bsStyle="success"
+                      onClick={this.handleReturnRow}
+                    >
+                    RETURN LAST DELETED ITEM
+                  </Button>
+                : null  
+              }
+            </td>
             <td>
               <Button
                 bsStyle="primary"

@@ -11,8 +11,8 @@ export default class ProductList extends Component{
 	}
 
 	removeItem(product){
-		const newProducts = this.state.products
-		const index = this.state.products.indexOf(product);
+		const newProducts = this.state.products.slice();
+		const index = newProducts.indexOf(product);
 		newProducts.splice(index, 1);		
 		this.setState({ products:newProducts}); 
 	}
@@ -38,7 +38,7 @@ export default class ProductList extends Component{
 				 	{productList}
 				 </tbody>
 				</table>
-			);
+		);
 	}
 
 }

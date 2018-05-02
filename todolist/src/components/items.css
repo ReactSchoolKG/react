@@ -1,0 +1,26 @@
+.list {
+    float: left;
+    text-align: left;
+    font-family: Georgia, cursive;
+    font-size: larger;
+
+}
+.item-block{
+    display: flex;
+    height: 45px;
+
+}
+.items,.del-button {
+
+    border: navy 1px solid;
+    margin-bottom: 10px;
+    width: 250px;
+    padding: 5px;
+
+}
+.del-button {
+    margin-left: 3px;
+    width: auto;
+
+
+}

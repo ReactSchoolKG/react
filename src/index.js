@@ -1,10 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import ProductTable from './components/ProductTable';
+import PRODUCTS from './ListProductsJSON';
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App/>, document.getElementById('root'));
-registerServiceWorker();
-
-
+render(
+  <ProductTable products={PRODUCTS} />,
+  document.getElementById(`root`)
+);

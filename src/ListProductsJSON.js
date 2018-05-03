@@ -1,14 +1,29 @@
+import createId from "./addFunctions";
+import './addFunctions';
+
 const PRODUCTS = [
-  `Apple`,
-  `Orange`,
-  `Mango`,
-  `Plum`,
-  `Papaya`,
-  `Nectarine`,
-  `Lemon`,
-  `Appricote`,
-  `Lime`,
-  `Pear`,
-];
+  {
+    name: `Apple`,
+  },
+  {
+    name:  `Mango`,
+  },
+  {
+    name: `Plum`,
+  },
+  {
+    name: `Nectarine`,
+  },
+  {
+    name:  `Lime`,
+  },
+  {
+    name: `Pear`,
+  },
+].map(product => Object.assign({ 
+  ...product,
+  id: createId(),
+  isDeleted: false,
+}));
 
 export default PRODUCTS;

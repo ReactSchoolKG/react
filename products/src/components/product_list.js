@@ -49,7 +49,7 @@ export default class ProductList extends Component{
 			});
 
 		const historyList =  this.state.history.map((item, index) => {
-			if(item.isRemoved){
+			if(!item.isRemoved){
 				return <p key={index}>{`${item.productName} was removed - ${item.time}`}</p>;								
 			}
 			return <p key={index}>{`${item.productName} was returned - ${item.time}`}</p>;	

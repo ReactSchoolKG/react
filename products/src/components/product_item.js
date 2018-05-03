@@ -5,10 +5,10 @@ export default class ProductItem extends Component{
 		let product=this.props.product;
 		return(
 				<tr>
-				   <td>{product}</td>
+				   <td>{product.isShow && product.productName}</td>
 				   <td>
 				   	<button onClick={() => this.props.removeItem(product)}>
-				   	  Remove
+				   	  {product.isShow ? "Remove" : "Return"}
 				   	</button>
 				   </td>
 				</tr>

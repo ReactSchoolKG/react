@@ -5,58 +5,40 @@ export default class ProductList extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			products : ["Apple", "Apricot", "Avocado", "Banana", "Bilberry", "Blackberry", "Blackcurrant"],
-			temp:[],
+			products : [
+			{productName:"Apple",isShow:true},
+			{productName:"Apricot",isShow:true},
+			{productName:"Avocado",isShow:true},
+			{productName:"Banana",isShow:true},
+			{productName:"Bilberry",isShow:true},
+			{productName:"Blackberry",isShow:true},
+			{productName:"Blackcurrant",isShow:true}
+			],	
 			history:[]
 		}
 		this.removeItem= this.removeItem.bind(this);
 	}
 
 	removeItem(product){
-		const newProducts = this.state.products.slice();
-		const newTemp=this.state.temp.slice();
-		const newHistory=this.state.history.slice();	
-		let time = new Date().toLocaleTimeString();		
-		newTemp.push(product);
-		newHistory.push({
-			product:product,
+		const newProducts = this.state.products.slice();			
+		let time = new Date().toLocaleTimeString();
+		const newHistoryItem={
+			productName:product.productName,
 			time:time,
-			isRemoved:true
-		})
+			isRemoved:!product.isShow
+		};	
+		const newHistory= [...this.state.history,  newHistoryItem];
 		const index = newProducts.indexOf(product);
-		newProducts.splice(index, 1);		
+		newProducts[index].isShow= !product.isShow;		
 		this.setState({
 		 products:newProducts,
-		 temp:newTemp,
 		 history:newHistory
 		}); 
 	}
-	returnItem(){
-		const newProducts = this.state.products.slice();
-		const newTemp=this.state.temp.slice();
-		const newHistory=this.state.history.slice();
-		let time=new Date().toLocaleTimeString();	
-		let item =newTemp.pop();
-	
-		if (!item){
-			return;
-		}			
-		newProducts.push(item);
-		console.log(time);
-		newHistory.push({
-			product:item,
-			time:time,
-			isRemoved:false
-		})					
-		this.setState({
-		 products:newProducts,
-		 temp:newTemp,
-		 history:newHistory
-		});
 
-	}
 	render(){
-		const productList= this.state.products.map((product, i) =>{
+
+		const productList = this.state.products.map((product, i) =>{
 			return(
 					<ProductItem
 						product={product}
@@ -65,6 +47,13 @@ export default class ProductList extends Component{
 					/>
 				);
 			});
+
+		const historyList =  this.state.history.map((item, index) => {
+			if(item.isRemoved){
+				return <p key={index}>{`${item.productName} was removed - ${item.time}`}</p>;								
+			}
+			return <p key={index}>{`${item.productName} was returned - ${item.time}`}</p>;	
+		})
 
 		return(
 				<div>
@@ -78,20 +67,9 @@ export default class ProductList extends Component{
 					 <tbody>
 					 	{productList}
 					 </tbody>
-					</table>
-					<button onClick={() => this.returnItem()}>
-					  Return
-					</button>
+					</table>					
 					<h2>History</h2>
-					{
-						this.state.history.map((item, index) => {
-							if(item.isRemoved){
-								return <p key={index}>{`${item.product} was removed - ${item.time}`}</p>;								
-							}
-							return <p key={index}>{`${item.product} was returned - ${item.time}`}</p>;	
-						})
-
-					}
+					{historyList}
 				</div>
 		);
 	}

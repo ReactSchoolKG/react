@@ -1,8 +1,6 @@
 import React from 'react';
+import ProductsList from './products_list/products_list'
 import './App.css';
-import NestedComponentsExample from './nesting_components/nested_components_main_container';
-import ComponentStateAndInteractions from './component_state_and_interactions/component_state_and_interactions_main_container';
-import ConditionalRendering from './conditional_rendering/conditional_rendering_main_container';
 
 class App extends React.Component {
     constructor(props) {
@@ -12,18 +10,18 @@ class App extends React.Component {
         };
     }
 
-
     render() {
-
 
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 className="App-title">Welcome to KindGeek React School</h1>
+                    <h1 className="App-title">Homework for KindGeek React School</h1>
+                    <h3>Products list</h3>
                 </header>
-                <NestedComponentsExample/>
-                <ComponentStateAndInteractions/>
-                <ConditionalRendering/>
+                <main>
+                    <ProductsList/>
+                </main>
+            
             </div>
         );
     }

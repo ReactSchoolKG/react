@@ -1,28 +1,20 @@
-import React from 'react';
-import ProductItem from './products_list_item';
+import React from "react";
+import { WithStyles } from "material-ui/styles";
+
+import ProductItem from "./products_list_item";
 
 class ProductList extends React.Component {
-   
-   state = {
-    products: ["Apple","Orange","Onion","Cucumber"]
-   }
-
-
-   deleteProduct = (index) => {
-    const products = [...this.state.products];
-    products.splice(index,1);
-    this.setState({products});
-   };
+    state = {
+        products: ["Apple", "Orange", "Onion", "Cucumber"]
+    };
 
     render() {
-
         return (
             <div>
                 <ul>
-                    {this.state.products.map((product,index)=><ProductItem 
-                                                                    key={index}     
-                                                                    productItem={product} 
-                                                                    deleteProduct={(e)=>this.deleteProduct(index)}/>)}
+                    {this.state.products.map((product, index) => (
+                        <ProductItem key={index} productName={product} />
+                    ))}
                 </ul>
             </div>
         );

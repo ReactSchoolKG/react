@@ -1,5 +1,4 @@
-import createId from "./addFunctions";
-import './addFunctions';
+import createId from "./createId";
 
 const PRODUCTS = [
   {

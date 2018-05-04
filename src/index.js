@@ -2,11 +2,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import ProductTable from './components/ProductTable';
+import App from './components/App';
 import PRODUCTS from './ListProductsJSON';
 import './index.css';
 
 render(
-  <ProductTable products={PRODUCTS} />,
+  <App products={PRODUCTS} />,
   document.getElementById(`root`)
 );

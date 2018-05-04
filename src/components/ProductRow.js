@@ -1,16 +1,16 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const ProductRow = ({ productData, handleProductChange }) => (
+const ProductRow = ({ productData, toggleProduct }) => (
   <tr>
     <td>{productData.id}</td>
-    <td>{!productData.isDeleted ? productData.name : null}</td>
+    <td>{!productData.isDeleted && productData.name}</td>
     <td>
       <Button
         bsStyle="danger"
-        onClick={() => handleProductChange(productData.id)}
+        onClick={() => toggleProduct(productData.id)}
       >
-        {!productData.isDeleted ? `delete` : `update` }
+        {!productData.isDeleted ? `delete` : `restore` }
       </Button>
     </td>
   </tr>

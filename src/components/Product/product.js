@@ -62,6 +62,10 @@ class Products extends Component {
           </tbody>
         </table>
 
+        <h3 className="text-center">
+          History of Deleting / Restoring data from table
+        </h3>
+
         <ul className="list-group">
           {this.state.history.map((element, index) => {
             {

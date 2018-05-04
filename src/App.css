@@ -1,6 +1,6 @@
 body{
   background: firebrick;
-  padding-top: 100px; 
+  padding-top: 70px; 
 }
 table{
   border-collapse: collapse;
@@ -50,4 +50,15 @@ h1{
 .return button:hover{
   color: firebrick;
   background: #eee;
+}
+.history_list {
+  width:80%;
+  margin: 0 auto;
+}
+.history_list ul li{
+  color:#eee;
+  list-style-type:none;
+  line-height:1.5em;
+  text-align:center;
+  margin: 10px 0px;
 }

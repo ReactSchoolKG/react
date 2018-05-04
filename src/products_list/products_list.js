@@ -1,5 +1,4 @@
 import React from "react";
-import { WithStyles } from "material-ui/styles";
 
 import ProductItem from "./products_list_item";
 

@@ -23,15 +23,17 @@ class Products extends Component {
     const currentDateInfo = `${currentDate.getDate()}-${currentDate.getMonth() +
       1}-${currentDate.getFullYear()}: ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
 
+    const productsList = [...this.state.productsList];
+
+    productsList[index].deleted = !productsList[index].deleted;
+
     const newHistory = {
       currentDateInfo,
+      deleted: productsList[index].deleted,
       index
     };
 
-    const productsList = [...this.state.productsList];
     const history = [...this.state.history, newHistory];
-
-    productsList[index].deleted = !productsList[index].deleted;
 
     this.setState({
       productsList,
@@ -67,19 +69,12 @@ class Products extends Component {
         </h3>
 
         <ul className="list-group">
-          {this.state.history.map((element, index) => {
-            {
-              return this.state.productsList[element.index].deleted ? (
-                <li key={index} className="list-group-item">
-                  Row {element.index} deleted at {element.currentDateInfo}
-                </li>
-              ) : (
-                <li key={index} className="list-group-item">
-                  Row {element.index} restored at {element.currentDateInfo}
-                </li>
-              );
-            }
-          })}
+          {this.state.history.map((el, index) => (
+            <li key={index} className="list-group-item">
+              Row {el.index} {el.deleted ? 'deleted' : 'restored'} at{' '}
+              {el.currentDateInfo}
+            </li>
+          ))}
         </ul>
       </React.Fragment>
     );

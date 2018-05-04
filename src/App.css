@@ -32,3 +32,11 @@
     padding: 10px;
     border: 1px solid grey;
 }
+
+.App .product-table{
+  text-align: left;
+}
+.App .product-table button{
+  position: absolute;
+  right: 80%;
+}

@@ -2,47 +2,84 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import ProductItem from '../ProductItem/productItem';
 
-class Product extends Component {
+class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productsList: ['Apple', 'Peanut', 'Tomato', 'Cucumber', 'Banana', 'Lemon']
+      productsList: [
+        { name: 'Apple', deleted: false },
+        { name: 'Peanut', deleted: false },
+        { name: 'Tomato', deleted: false },
+        { name: 'Cucumber', deleted: false },
+        { name: 'Banana', deleted: false },
+        { name: 'Lemon', deleted: false }
+      ],
+      history: []
     };
   }
 
-  deleteRow(index) {
+  toggleRow(index) {
+    const currentDate = new Date();
+    const currentDateInfo = `${currentDate.getDate()}-${currentDate.getMonth() +
+      1}-${currentDate.getFullYear()}: ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
+
+    const newHistory = {
+      currentDateInfo,
+      index
+    };
+
     const productsList = [...this.state.productsList];
-    productsList.splice(index, 1);
+    const history = [...this.state.history, newHistory];
+
+    productsList[index].deleted = !productsList[index].deleted;
+
     this.setState({
-      productsList
+      productsList,
+      history
     });
   }
 
   render() {
     return (
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.productsList.map((el, i) => {
-            return (
+      <React.Fragment>
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Delete / Restore</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.productsList.map((product, i) => (
               <ProductItem
-                product={el}
+                product={product}
                 key={i}
                 index={i}
-                deleteRow={() => this.deleteRow(i)}
+                toggleRow={() => this.toggleRow(i)}
               />
-            );
+            ))}
+          </tbody>
+        </table>
+
+        <ul className="list-group">
+          {this.state.history.map((element, index) => {
+            {
+              return this.state.productsList[element.index].deleted ? (
+                <li key={index} className="list-group-item">
+                  Row {element.index} deleted at {element.currentDateInfo}
+                </li>
+              ) : (
+                <li key={index} className="list-group-item">
+                  Row {element.index} restored at {element.currentDateInfo}
+                </li>
+              );
+            }
           })}
-        </tbody>
-      </table>
+        </ul>
+      </React.Fragment>
     );
   }
 }
 
-export default Product;
+export default Products;

@@ -1,17 +1,16 @@
 import React from 'react';
 
-const ProductItem = ({ product, index, deleteRow }) => {
+const ProductItem = ({ product, index, toggleRow }) => {
   return (
     <tr>
-      <th scope="row">{index}</th>
-      <td>{product}</td>
+      <th scope="col">{product.deleted || index}</th>
+      <td>{product.deleted || product.name}</td>
       <td>
-        <button className="btn btn-primary" onClick={deleteRow}>
-          Delete
+        <button onClick={toggleRow} className="btn btn-primary">
+          {product.deleted ? 'Restore' : 'Delete'}
         </button>
       </td>
     </tr>
   );
 };
-
 export default ProductItem;

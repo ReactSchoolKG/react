@@ -1,17 +1,19 @@
 import React from 'react';
 import DeleteButton from './deleteButton';
 
+let historyEvents = [];
+
 export default class ProductItem extends React.Component {
+
+    
   constructor(props) {
       super(props);
-      console.log(props)
 
       this.state = {
         buttonName: 'Delete',
         productName: props.element
     }
-  }
-
+  };
 
     onButtonChange() {
       if (this.state.buttonName === 'Delete') {
@@ -26,6 +28,9 @@ export default class ProductItem extends React.Component {
 
         })
       }
+
+      this.props.eventAdder(this.props.element, this.state.buttonName)
+
     }
 
   render() {

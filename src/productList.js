@@ -1,47 +1,44 @@
 import React from 'react';
 import ProductItem from './ProductItem.js';
+import HistorySheet from './historySheet.js';
+// import {historyEvents} from './ProductItem.js';
 
     let products = ["Apple", "Orange", "Ananas", "Banana", "Strawberry", "Cherry"];
+    let history = []
 
 export default class ProductList extends React.Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     showItem: "true"
-  //   };
-  // }
 
-  // someAction(e){
-  //   console.log("hey")
-  //   this.setState({
-  //     showItem:"false"
-  //   })
-  // }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {showItem: true}
-  //   this.handleToggleClick = this.handleToggleClick.bind(this);
-  // }
-
-  // handleToggleClick() {
-  //   this.setState(prevState => ({
-  //     showItem: !prevState.showItem
-  //   }));
-  // }
   constructor(props){
     super(props);
+    this.state = {
+      eventList: []
+    }
   }
+
+  addEventToHistory(item, action){
+      this.setState({eventList: "Item: " + item + ";  Action: " + action + ";  " + new Date().toLocaleTimeString()});
+      history.push("Item: " + item + ";  Action: " + action + ";  " + new Date().toLocaleTimeString());
+    }
+
   render(){
     return (
-      <ul  className="product-table">
-      {products.map((el, index) => 
-        <li key={index}>
-          <ProductItem element={el} list={products}>
-          </ProductItem>
-        </li>)}
+      <div>
+        <ul  className="product-table">
+        {products.map((el, index) => 
+          <li key={index}>
+            <ProductItem eventAdder={this.addEventToHistory.bind(this)} element={el} list={products}>
+            </ProductItem>
+          </li>)}
 
-      </ul>
+        </ul>
+        <HistorySheet>
+          {history.map((el, index) => 
+          <p key={index}>
+            {el}
+          </p>)}
+        </HistorySheet>
+      </div>
       );
   }
 }

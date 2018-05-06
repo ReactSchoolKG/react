@@ -1,7 +1,6 @@
 import React from 'react';
 import MessagesList from './messages_list';
 import ProductsList from './products_list';
-
 import ProductItem from './product_item';
 
 export default class NestedComponentsExample extends React.Component {

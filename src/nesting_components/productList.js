@@ -40,24 +40,12 @@ export default class Product extends React.Component {
 			<div>
 				<table>
 					<tbody>
-						{this.state.productsList.map((el, i) => {
-							return (
-								<ProductItem
-									product={el}
-									key={i}
-									delRow={() => this.deleteRestore(i)}
-								/>
-							);
-						})}
+						{this.state.productsList.map((el, i) => <ProductItem product={el} key={i} delRow={() => this.deleteRestore(i)}/>)}
 					</tbody>
 				</table>
 				<div>
 					<ul>
-						{
-							this.state.history.map((el,i) =>{
-								return(<li key={i}>{el}</li>)
-							})
-						}
+						{this.state.history.map((el,i) => <li key={i}>{el}</li>)}
 					</ul>
 				</div>
 			</div>

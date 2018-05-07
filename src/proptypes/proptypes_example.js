@@ -1,11 +1,8 @@
 import React from 'react';
-import MessagesList from './messages_list';
-import ProductsList from './products_list';
-import ProductItem from './product_item';
+import PropTypes from 'prop-types'; // ES6
 
 
-
-export default class NestedComponentsExample extends React.Component {
+export default class ProptypesExample extends React.Component {
 
 // Current example shows how to nest a component directly inside other component
 
@@ -22,16 +19,19 @@ export default class NestedComponentsExample extends React.Component {
     render() {
         return (
             <div className="app-block">
-                <h2>Component nesting ( parent-child ):</h2>
-                {/*option1*/}
-                <MessagesList/>
-
-                {/*option2*/}
-                <ProductsList>
-                    <ProductItem></ProductItem>
-                </ProductsList>
+                <h2>Proptypes example (check the code)</h2>
             </div>
         );
     }
 }
 
+
+ProptypesExample.propTypes = {
+    optionalArray: PropTypes.array.isRequired,
+    optionalBool: PropTypes.bool,
+    optionalFunc: PropTypes.func,
+    optionalNumber: PropTypes.number,
+    optionalObject: PropTypes.object,
+    optionalString: PropTypes.string,
+    requiredAny: PropTypes.any.isRequired,
+};

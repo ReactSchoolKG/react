@@ -15,6 +15,8 @@ export default class ConditionalRendering extends React.Component {
     }
 
     render() {
+        console.log(this.props.match);
+
         return (
             <div className="app-block">
                 <h2>This is an example of conditional rendering in React.js (JSX)</h2>

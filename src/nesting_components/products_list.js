@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types'; // ES6
 
 
 export default class ProductsList extends React.Component {

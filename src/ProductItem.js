@@ -1,8 +1,6 @@
 import React from 'react';
 import DeleteButton from './deleteButton';
 
-let historyEvents = [];
-
 export default class ProductItem extends React.Component {
 
     

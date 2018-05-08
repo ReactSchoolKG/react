@@ -1,10 +1,8 @@
 import React from 'react';
 import ProductItem from './ProductItem.js';
 import HistorySheet from './historySheet.js';
-// import {historyEvents} from './ProductItem.js';
 
     let products = ["Apple", "Orange", "Ananas", "Banana", "Strawberry", "Cherry"];
-    let history = []
 
 export default class ProductList extends React.Component {
 
@@ -17,8 +15,7 @@ export default class ProductList extends React.Component {
   }
 
   addEventToHistory(item, action){
-      this.setState({eventList: "Item: " + item + ";  Action: " + action + ";  " + new Date().toLocaleTimeString()});
-      history.push("Item: " + item + ";  Action: " + action + ";  " + new Date().toLocaleTimeString());
+      this.setState({eventList: [ ...this.state.eventList, "Item: " + item + ";  Action: " + action + ";  " + new Date().toLocaleTimeString()]});
     }
 
   render(){
@@ -33,7 +30,7 @@ export default class ProductList extends React.Component {
 
         </ul>
         <HistorySheet>
-          {history.map((el, index) => 
+          {this.state.eventList.map((el, index) =>  
           <p key={index}>
             {el}
           </p>)}

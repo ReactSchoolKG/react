@@ -1,13 +1,21 @@
 import React from 'react';
 
-export default class HistorySheet extends React.Component {
+// export default class HistorySheet extends React.Component {
 
-  render(){
-    return (
-      <div className="history">
-        <h4 className="history-header">This is the history of operations:</h4>
-        {this.props.children}
-      </div>
-      );
-  }
-}
+//   render(){
+//     return (
+//       <div className="history">
+//         <h4 className="history-header">This is the history of operations:</h4>
+//         {this.props.children}
+//       </div>
+//       );
+//   }
+// }
+
+const HistorySheet = (props) => 
+<div className="history">
+    <h4 className="history-header">This is the history of operations:</h4>
+    {props.children}
+</div>
+
+export default HistorySheet;

@@ -1,34 +1,29 @@
-import React from 'react';
-import {withStyles} from 'material-ui';
+import React from "react"
+import { withStyles } from "material-ui"
 
 const styles = theme => ({
-        delete: {
-        textDecoration: 'line-through',
-    },
-})
+  delete: {
+    textDecoration: "line-through",
+  },
+});
 
- class ProductItem extends React.Component {
-    state = {
-      isDeleted: false
-    };
-
-
-    toggle = () => {
-      this.setState({isDeleted: !this.state.isDeleted})
-    };
-
-render(){
-
-const {productName,isDeleted,classes} = this.props
-
-      return (
-        <li>
-           <span className={this.state.isDeleted && classes.delete}>{productName}</span>
-          {this.state.isDeleted ? <button type='submit' onClick={this.toggle.bind(this)}>Відновити</button> : <button type='submit' onClick={this.toggle.bind(this)}>Видалити</button>}
-        </li>
-    );
+class ProductItem extends React.Component {
+  render() {
+    const {
+      classes,
+      productName,
+      status,
+      toggleStatus,
+    } = this.props;
+    return (
+      <li className={classes.listItem}>
+        <span className={status && classes.delete}>{productName}</span>
+        <button onClick={toggleStatus}>
+          {status ? "Restore" : "delete"}
+        </button>
+      </li>
+    )
+  }
 }
 
-};
-
-export default withStyles(styles)(ProductItem)
+export default withStyles(styles)(ProductItem);

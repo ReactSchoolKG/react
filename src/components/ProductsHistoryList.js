@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HistoryList = ({ historyData, productData }) => (
+const ProductsHistoryList = ({ historyData, productData }) => (
   historyData.length>0 &&
   <ul>
     {historyData.map(
@@ -13,4 +13,4 @@ const HistoryList = ({ historyData, productData }) => (
   </ul>
 );
 
-export default HistoryList;
+export default ProductsHistoryList;

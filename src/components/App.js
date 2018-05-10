@@ -1,49 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
-import ProductTable from './ProductTable';
-import HistoryList from './HistoryList';
+import Header from './Header';
+import Home from './Home';
+import Products from './Products';
+import ProductDetails from './ProductDetails';
+import NotFound from './NotFound';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      products: this.props.products,
-      history: [],
-    }
-
-    this.toggleProduct = this.toggleProduct.bind(this);
-  }
-
-  toggleProduct(id) {
-    const { products, history } = this.state;
-    const newProducts = JSON.parse(JSON.stringify(products));
-    const targetProduct = newProducts.find(product => product.id === id);
-
-    targetProduct.isDeleted = !targetProduct.isDeleted;
-
-    this.setState({
-      products: newProducts,
-      history: [...history, {id, isDeleted: targetProduct.isDeleted, time: new Date().toLocaleString()},],
-    });
-  }
-
-  render() {
-    const { products, history } = this.state;
-    
-    return(
-      <div>
-        <ProductTable 
-          products={products}
-          toggleProduct={this.toggleProduct}
-        />
-        <HistoryList
-          historyData={history}
-          productData={products}
-        />
-      </div>
-    )
-  }
-}
+const App = () => (
+  <BrowserRouter>
+    <div className="container">
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/products" component={Products} />
+        <Route path="/products/:id" component={ProductDetails} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
+  </ BrowserRouter>
+)
 
 export default App;

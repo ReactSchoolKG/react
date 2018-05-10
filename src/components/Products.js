@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ProductsTable from './ProductsTable';
 import ProductsHistoryList from './ProductsHistoryList';
-import { getAll, getOne, updateProducts } from '../ProductsService';
+import { getAll, updateOne } from '../ProductsService';
 
 class Products extends Component {
   constructor(props){
@@ -17,14 +17,15 @@ class Products extends Component {
     this.handleShowMore = this.handleShowMore.bind(this);
   }
 
-  toggleProduct(id) {
+  toggleProduct(id, isDeleted) {
     const { history } = this.state;
-    const product = getOne(id);
-    const updatedData = updateProducts(id, {isDeleted: !product.isDeleted});
+    updateOne(id, { isDeleted: !isDeleted });
+    const updatedProducts = getAll();
+    const updatedProduct = updatedProducts.find(p => p.id === id);
 
     this.setState({
-      products: updatedData,
-      history: history.concat({id, isDeleted: !product.isDeleted, time: new Date().toLocaleString()})
+      products: updatedProducts,
+      history: history.concat({id, isDeleted: updatedProduct.isDeleted, time: new Date().toLocaleString()})
     });
   }
 

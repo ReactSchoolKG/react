@@ -1,6 +1,6 @@
 import createId from "./createId";
 
-let PRODUCTS = [
+const PRODUCTS = [
   {
     name: `Apple`,
     maxPrice: 20,
@@ -44,10 +44,12 @@ let PRODUCTS = [
   isDeleted: false,
 }));
 
-export const getAll = () => PRODUCTS;
-export const getOne = id => JSON.parse(JSON.stringify(PRODUCTS.find(product => product.id === id)));
-export const updateProducts = (id, changeProperty) => {
-  const product = getOne(id);
-  const updatedProduct = product && (Object.assign({}, product, changeProperty));
-  return PRODUCTS = PRODUCTS.map(p => p.id === id ? updatedProduct : p);
+const copy = data => JSON.parse(JSON.stringify(data));
+
+export const getAll = () => copy(PRODUCTS);
+export const getOne = id => getAll().find(product => product.id === id);
+export const updateOne = (id, data) => {
+  const product = PRODUCTS.find(product => product.id === id);
+  product && (Object.assign(product, data));
+  return getOne(id);
 };

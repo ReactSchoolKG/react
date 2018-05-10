@@ -8,7 +8,7 @@ const ProductRow = ({ productData: { id, isDeleted, name }, toggleProduct, handl
     <td>
       <Button
         bsStyle="danger"
-        onClick={() => toggleProduct(id)}
+        onClick={() => toggleProduct(id, isDeleted)}
       >
         {!isDeleted ? `delete` : `restore` }
       </Button>

@@ -14,8 +14,22 @@ export default class ConditionalRendering extends React.Component {
         this.setState({condition: !this.state.condition});
     }
 
+    httpRequest() {
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(() => ({products: ['Mango', 'Kiwi', 'Avocado']}))
+            }, 2000)
+        }).then(data => {
+            console.log(data());
+            return data;
+        });
+    }
+
+    componentDidMount() {
+
+    }
+
     render() {
-        console.log(this.props.match);
 
         return (
             <div className="app-block">
@@ -25,6 +39,7 @@ export default class ConditionalRendering extends React.Component {
                     {this.state.condition && <span> This element is rendered if condition is TRUE</span>}
                     {!this.state.condition && <span> This element is rendered if condition is FALSE</span>}
                 </div>
+                <button onClick={this.httpRequest}>Do API call</button>
                 <button onClick={(e) => this.changeCondition(e)}>Change condition</button>
             </div>
         );

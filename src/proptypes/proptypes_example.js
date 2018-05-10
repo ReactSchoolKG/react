@@ -17,8 +17,9 @@ export default class ProptypesExample extends React.Component {
     // 3. When using a parent component somewhere, also include a child component and place is between open close tages of parent component
 
     render() {
+        let styles = {width: '400px', backgroundColor: this.props.someProp ? '#ff0000' : '#00ff00'};
         return (
-            <div className="app-block">
+            <div className="app-block" style={styles}>
                 <h2>Proptypes example (check the code)</h2>
             </div>
         );
@@ -27,11 +28,11 @@ export default class ProptypesExample extends React.Component {
 
 
 ProptypesExample.propTypes = {
-    optionalArray: PropTypes.array.isRequired,
-    optionalBool: PropTypes.bool,
-    optionalFunc: PropTypes.func,
-    optionalNumber: PropTypes.number,
-    optionalObject: PropTypes.object,
-    optionalString: PropTypes.string,
+    optionalArray: PropTypes.object.isRequired,
+    optionalBool: PropTypes.bool.isRequired,
+    optionalFunc: PropTypes.func.isRequired,
+    optionalNumber: PropTypes.number.isRequired,
+    optionalObject: PropTypes.object.isRequired,
+    optionalString: PropTypes.string.isRequired,
     requiredAny: PropTypes.any.isRequired,
 };

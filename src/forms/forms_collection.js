@@ -144,6 +144,7 @@ export class MultipleForms extends React.Component {
         super(props);
         this.state = {
             isGoing: true,
+            textInput: '',
             numberOfGuests: 2
         };
 

@@ -3,8 +3,6 @@ import MessagesList from './messages_list';
 import ProductsList from './products_list';
 import ProductItem from './product_item';
 
-
-
 export default class NestedComponentsExample extends React.Component {
 
 // Current example shows how to nest a component directly inside other component
@@ -25,7 +23,7 @@ export default class NestedComponentsExample extends React.Component {
                 <h2>Component nesting ( parent-child ):</h2>
                 {/*option1*/}
                 <MessagesList/>
-
+                {/*<Link>Child</Link>*/}
                 {/*option2*/}
                 <ProductsList>
                     <ProductItem></ProductItem>

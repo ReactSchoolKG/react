@@ -21,7 +21,7 @@ class App extends React.Component {
                 <ComponentStateAndInteractions/>
                 <LifecycleComponentExample/>
                 <ConditionalRendering/>
-                <ProptypesExample/>
+                <ProptypesExample optionalArray={[]}/>
                 <FormsExample/>
             </div>
 

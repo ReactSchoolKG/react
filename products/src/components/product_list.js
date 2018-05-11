@@ -1,35 +1,30 @@
 import React, {Component} from 'react';
 import ProductItem from './product_item';
+import productsService from "./../ProductsService";
 
 export default class ProductList extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			products : [
-			{productName:"Apple",isShow:true},
-			{productName:"Apricot",isShow:true},
-			{productName:"Avocado",isShow:true},
-			{productName:"Banana",isShow:true},
-			{productName:"Bilberry",isShow:true},
-			{productName:"Blackberry",isShow:true},
-			{productName:"Blackcurrant",isShow:true}
-			],	
+			products: productsService.products,	
 			history:[]
 		}
 		this.removeItem= this.removeItem.bind(this);
 	}
 
 	removeItem(product){
+		let status =!product.status;
 		const newProducts = this.state.products.slice();			
 		let time = new Date().toLocaleTimeString();
 		const newHistoryItem={
-			productName:product.productName,
+			productName:product.name,
 			time:time,
-			isRemoved:!product.isShow
+			isRemoved:status
 		};	
 		const newHistory= [...this.state.history,  newHistoryItem];
 		const index = newProducts.indexOf(product);
-		newProducts[index].isShow= !product.isShow;		
+		newProducts[index].status= status;
+		productsService.products[index].status=	status;
 		this.setState({
 		 products:newProducts,
 		 history:newHistory
@@ -41,6 +36,7 @@ export default class ProductList extends Component{
 		const productList = this.state.products.map((product, i) =>{
 			return(
 					<ProductItem
+						id={i}
 						product={product}
 						key={i}
 						removeItem={this.removeItem}

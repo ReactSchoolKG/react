@@ -104,10 +104,6 @@ class ProductList extends Component {
               ))}
             </tbody>
           </table>
-          <Route
-            path={`${this.props.match.path}/:id`}
-            component={ProductItemDetails}
-          />
         </div>
         <div className="history_list">
           <h1>History list</h1>

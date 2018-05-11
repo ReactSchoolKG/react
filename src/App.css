@@ -95,17 +95,26 @@ a:hover {
   color: #eee;
 }
 .productItemDetails h3 {
-  margin-top: 20px;
-  text-align: center;
+  margin-top: 60px;
   color: #eee;
+  letter-spacing: 0.1em;
+  font-size: 150%;
+  text-align: center;
 }
 .productItemDetails ul {
+  margin: 0 auto;
+  width: auto;
   padding: 0;
 }
 .productItemDetails ul li {
   color: #eee;
   list-style-type: none;
   line-height: 1.5em;
-  text-align: center;
   margin: 10px 0px;
+  padding: 10px;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+.active {
+  text-decoration: underline;
 }

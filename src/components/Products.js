@@ -19,10 +19,9 @@ class Products extends Component {
 
   toggleProduct(id, isDeleted) {
     const { history } = this.state;
-    updateOne(id, { isDeleted: !isDeleted });
+    const updatedProduct = updateOne(id, { isDeleted: !isDeleted });
     const updatedProducts = getAll();
-    const updatedProduct = updatedProducts.find(p => p.id === id);
-
+  
     this.setState({
       products: updatedProducts,
       history: history.concat({id, isDeleted: updatedProduct.isDeleted, time: new Date().toLocaleString()})

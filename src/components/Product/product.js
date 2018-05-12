@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import ProductItem from '../ProductItem/productItem';
+import productService from '../../productService';
+import History from '../History/history';
 
 class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productsList: [
-        { name: 'Apple', deleted: false },
-        { name: 'Peanut', deleted: false },
-        { name: 'Tomato', deleted: false },
-        { name: 'Cucumber', deleted: false },
-        { name: 'Banana', deleted: false },
-        { name: 'Lemon', deleted: false }
-      ],
+      productsList: productService.getProducts(),
       history: []
     };
   }
@@ -25,11 +20,11 @@ class Products extends Component {
 
     const productsList = [...this.state.productsList];
 
-    productsList[index].deleted = !productsList[index].deleted;
+    productsList[index].available = !productsList[index].available;
 
     const newHistory = {
       currentDateInfo,
-      deleted: productsList[index].deleted,
+      deleted: productsList[index].available,
       index
     };
 
@@ -50,6 +45,7 @@ class Products extends Component {
               <th scope="col">#</th>
               <th scope="col">Product Name</th>
               <th scope="col">Delete / Restore</th>
+              <th scope="col">Information about product</th>
             </tr>
           </thead>
           <tbody>
@@ -64,17 +60,8 @@ class Products extends Component {
           </tbody>
         </table>
 
-        <h3 className="text-center">
-          History of Deleting / Restoring data from table
-        </h3>
-
         <ul className="list-group">
-          {this.state.history.map((el, index) => (
-            <li key={index} className="list-group-item">
-              Row {el.index} {el.deleted ? 'deleted' : 'restored'} at{' '}
-              {el.currentDateInfo}
-            </li>
-          ))}
+          <History historyData={this.state.history} />
         </ul>
       </React.Fragment>
     );

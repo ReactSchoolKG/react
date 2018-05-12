@@ -5,15 +5,23 @@ import { Link } from 'react-router-dom';
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
-    this.productId = parseInt(this.props.match.params.id, 10);
     this.state = {
-      product: productService.getProductById(this.productId)
+      product: []
     };
   }
 
+  componentWillMount() {
+    this.productId = parseInt(this.props.match.params.id, 10);
+    const product = productService.getProductById(this.productId);
+
+    this.setState({
+      product
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
-    const productId = parseInt(nextProps.match.params.id, 10);
-    const product = productService.getProductById(productId);
+    this.productId = parseInt(nextProps.match.params.id, 10);
+    const product = productService.getProductById(this.productId);
     this.setState({
       product
     });
@@ -26,6 +34,7 @@ class ProductDetails extends Component {
         <table className="table table-bordered">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Banner</th>
               <th scope="col">Available</th>
@@ -36,6 +45,7 @@ class ProductDetails extends Component {
           </thead>
           <tbody>
             <tr>
+              <td>{this.productId}</td>
               <td>{name}</td>
               <td>{banner}</td>
               <td>{available.toString()}</td>

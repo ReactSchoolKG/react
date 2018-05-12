@@ -17,8 +17,6 @@ class ProductDetails extends Component {
     this.setState({
       product
     });
-
-    console.log('Component Will Mount');
   }
 
   render() {

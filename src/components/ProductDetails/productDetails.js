@@ -15,7 +15,6 @@ class ProductDetails extends Component {
     const productId = parseInt(nextProps.match.params.id, 10);
     const product = productService.getProductById(productId);
     this.setState({
-      productId,
       product
     });
   }

@@ -17,14 +17,8 @@ class ProductDetails extends Component {
     this.setState({
       product
     });
-  }
 
-  componentWillReceiveProps(nextProps) {
-    this.productId = parseInt(nextProps.match.params.id, 10);
-    const product = productService.getProductById(this.productId);
-    this.setState({
-      product
-    });
+    console.log('Component Will Mount');
   }
 
   render() {
